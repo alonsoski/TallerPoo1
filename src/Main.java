@@ -66,7 +66,15 @@ public class Main {
         if ((ganador==0)){
             decisionGanador(acumulador1,acumulador2);
         }
+        jugardenuevo();
 
+
+
+
+    }
+
+    private static void jugardenuevo() {
+        Scanner t = new Scanner(System.in);
         int jugarDenuevo=0;
         while(jugarDenuevo>2 || jugarDenuevo<1){
             System.out.println("Quieres jugar denuevo?");
@@ -79,8 +87,6 @@ public class Main {
         }else{
             System.out.println("adios");
         }
-
-
     }
 
     private static void decisionGanador(int acumulador1, int acumulador2){
