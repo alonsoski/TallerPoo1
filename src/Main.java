@@ -30,14 +30,15 @@ public class Main {
         String[][] jugador2= new String[3][2];
         int acumulador1=0;
         int acumulador2=0;
-        int aux = 0;
+        String aux = "0";
         int ganador=0;
+
         for (int i = 0; i <3 ; i++) {
             if (ganador==0){
-                System.out.println("------------------------------------");
-                System.out.println("jugador:"+(1)+" Puntaje:"+acumulador1);
+                System.out.println("-----------------Jugador 1-------------------");
+                System.out.println("Puntaje:"+acumulador1);
                 System.out.println(" ingrese algun caracter para coger una carta");
-                aux = t.nextInt();
+                aux = t.nextLine();
                 jugador1[i]=cogerCarta(matrizCartas);
                 acumulador1+=Integer.parseInt(jugador1[i][1]);
                 if (acumulador1>20){
@@ -46,22 +47,21 @@ public class Main {
                     System.out.println("el ganador es el jugador2");
                     break;
                 }
-                System.out.println("jugador:"+(2)+" Puntaje:"+acumulador2);
+                System.out.println("-----------------Jugador 2-------------------");
+                System.out.println("Puntaje:"+acumulador2);
                 System.out.println(" ingrese algun caracter para coger una carta");
-                aux = t.nextInt();
+                aux = t.nextLine();
                 jugador2[i]=cogerCarta(matrizCartas);
                 acumulador2+=Integer.parseInt(jugador2[i][1]);
+                System.out.println("");
                 if (acumulador2>20){
                     System.out.println("has perdido");
                     ganador=2;
                     System.out.println("el ganador es el jugador 1");
                     break;
                 }
+                System.out.println("---------------------------------------------");
             }
-
-
-
-
         }
         if ((ganador==0)){
             decisionGanador(acumulador1,acumulador2);
