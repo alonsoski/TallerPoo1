@@ -31,32 +31,69 @@ public class Main {
         int acumulador1=0;
         int acumulador2=0;
         int aux = 0;
+        int ganador=0;
         for (int i = 0; i <3 ; i++) {
-            System.out.println("------------------------------------");
-            System.out.println("jugador:"+(1)+" Puntaje:"+acumulador1);
-            System.out.println(" ingrese algun caracter para coger una carta");
-            aux = t.nextInt();
-            jugador1[i]=cogerCarta(matrizCartas);
-            acumulador1+=Integer.parseInt(jugador1[i][1]);
-            System.out.println("jugador:"+(2)+" Puntaje:"+acumulador2);
-            System.out.println(" ingrese algun caracter para coger una carta");
-            aux = t.nextInt();
-            jugador2[i]=cogerCarta(matrizCartas);
-            acumulador2+=Integer.parseInt(jugador2[i][1]);
-        decision(jugador1,jugador2);
+            if (ganador==0){
+                System.out.println("------------------------------------");
+                System.out.println("jugador:"+(1)+" Puntaje:"+acumulador1);
+                System.out.println(" ingrese algun caracter para coger una carta");
+                aux = t.nextInt();
+                jugador1[i]=cogerCarta(matrizCartas);
+                acumulador1+=Integer.parseInt(jugador1[i][1]);
+                if (acumulador1>20){
+                    System.out.println("has perdido");
+                    ganador=2;
+                    System.out.println("el ganador es el jugador2");
+                    break;
+                }
+                System.out.println("jugador:"+(2)+" Puntaje:"+acumulador2);
+                System.out.println(" ingrese algun caracter para coger una carta");
+                aux = t.nextInt();
+                jugador2[i]=cogerCarta(matrizCartas);
+                acumulador2+=Integer.parseInt(jugador2[i][1]);
+                if (acumulador2>20){
+                    System.out.println("has perdido");
+                    ganador=2;
+                    System.out.println("el ganador es el jugador 1");
+                    break;
+                }
+            }
 
+
+
+
+        }
+        if ((ganador==0)){
+            decisionGanador(acumulador1,acumulador2);
+        }
+
+        int jugarDenuevo=0;
+        while(jugarDenuevo>2 || jugarDenuevo<1){
+            System.out.println("Quieres jugar denuevo?");
+            System.out.println("1.-si");
+            System.out.println("2.-no");
+            jugarDenuevo=t.nextInt();
+        }
+        if (jugarDenuevo==1){
+            jugar();
+        }else{
+            System.out.println("adios");
         }
 
 
-
     }
 
-    private static void decision(String[][] jugador1, String[][] jugador2) {
-
+    private static void decisionGanador(int acumulador1, int acumulador2){
+        if(20-acumulador1>20-acumulador2){
+            System.out.println("ha ganado el jugador 2 con"+acumulador2+"pts");
+        }else {
+            System.out.println("ha ganado el jugador 1 con"+acumulador1+"pts");
+        }
     }
+
 
     private static String[] cogerCarta(String[][] matrizCartas) {
-        int indiceAleatorio=(int) (Math.random()*12);
+        int indiceAleatorio=(int) (Math.random()*11);
         System.out.println("La carta es:"+matrizCartas[indiceAleatorio][0]);
         System.out.println(("el puntaje es:"+matrizCartas[indiceAleatorio][1]));
         return matrizCartas[indiceAleatorio];
