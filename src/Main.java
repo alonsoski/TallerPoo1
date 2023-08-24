@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 import java.lang.Math;
 
@@ -26,13 +25,17 @@ public class Main {
         Scanner t = new Scanner(System.in);
         String[][] matrizCartas=crearMatrizCartas();
         matrizCartas=inicializarCartas();
+        juego(matrizCartas);
+    }
+
+    private static void juego(String[][] matrizCartas) {
+        Scanner t = new Scanner(System.in);
         String[][] jugador1= new String[3][2];
         String[][] jugador2= new String[3][2];
         int acumulador1=0;
         int acumulador2=0;
         String aux = "0";
         int ganador=0;
-
         for (int i = 0; i <3 ; i++) {
             if (ganador==0){
                 System.out.println("-----------------Jugador 1-------------------");
@@ -62,15 +65,11 @@ public class Main {
                 }
                 System.out.println("---------------------------------------------");
             }
+
         }
-        if ((ganador==0)){
-            decisionGanador(acumulador1,acumulador2);
-        }
+
+        decisionGanador(acumulador1,acumulador2,ganador);
         jugardenuevo();
-
-
-
-
     }
 
     private static void jugardenuevo() {
@@ -89,12 +88,15 @@ public class Main {
         }
     }
 
-    private static void decisionGanador(int acumulador1, int acumulador2){
-        if(20-acumulador1>20-acumulador2){
-            System.out.println("ha ganado el jugador 2 con"+acumulador2+"pts");
-        }else {
-            System.out.println("ha ganado el jugador 1 con"+acumulador1+"pts");
+    private static void decisionGanador(int acumulador1, int acumulador2, int ganador){
+        if (ganador==0){
+            if(20-acumulador1>20-acumulador2){
+                System.out.println("ha ganado el jugador 2 con"+acumulador2+"pts");
+            }else {
+                System.out.println("ha ganado el jugador 1 con"+acumulador1+"pts");
+            }
         }
+
     }
 
 
